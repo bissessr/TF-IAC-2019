@@ -1,5 +1,4 @@
-/* AWS Provider Configuration
-/*
+# AWS Provider Configuration
 
 provider "aws" {
     access_key = "${var.access_key}"
@@ -16,16 +15,11 @@ resource "aws_instance" "ExampleServer1" {
         Project = "Example IaC"
     }
     
-    /* provisioner "local-exec" {
-    /*    command = "echo ${aws_instance.ExampleServer1.private_ip} >> private_ip.txt"
-    /*}
-
-    provisioner "remote-exec" {
-        inline = [
-            "puppet apply"
-            "touch test.txt"
-        ]
+    # Example of remote provisioner
+    provisioner "local-exec" {
+        command = "echo ${aws_instance.ExampleServer1.private_ip} >> private_ip.txt"
     }
+    
 }
 
 resource "aws_instance" "ExampleServer2" {
@@ -35,5 +29,12 @@ resource "aws_instance" "ExampleServer2" {
     tags {
         Name = "Server2",
         Project = "Example IaC"
+    }
+    # Example of remote provisioner
+    provisioner "remote-exec" {
+        inline = [
+            "puppet apply"
+            "touch test.txt"
+        ]
     }
 }
