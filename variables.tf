@@ -24,11 +24,11 @@ variable "ami" {
 }
 
 variable "key_name" {
-    description = "AWS SSH Key Name"
-    default = "devops1"
+  description = "AWS SSH Key Name"
+  default = "devops1"
 }
 
 variable "key_path" {
-  description = "SSH Public Key path"
-  #default = "/home/core/.ssh/id_rsa.pub"
-    default = "C://Users//Raj//Documents//_LAB/_keys//devops1.pem"
+  description = "SSH Public Key path"  
+  default = "C://Users//Raj//Documents//_LAB/_keys//devops1.pub"    
+}

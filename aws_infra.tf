@@ -154,7 +154,7 @@ resource "aws_instance" "wb" {
    instance_type = "t1.micro"
    key_name = "${aws_key_pair.default.id}"
    subnet_id = "${aws_subnet.public-subnet.id}"
-   vpc_security_group_ids = ["${aws_security_group.sgweb.id}"]
+   vpc_security_group_ids = ["${aws_security_group.sg-public.id}"]
    associate_public_ip_address = true
    source_dest_check = false
    user_data = "${file("install_web.sh")}"
@@ -170,7 +170,7 @@ resource "aws_instance" "db" {
    instance_type = "t1.micro"
    key_name = "${aws_key_pair.default.id}"
    subnet_id = "${aws_subnet.private-subnet.id}"
-   vpc_security_group_ids = ["${aws_security_group.sgdb.id}"]
+   vpc_security_group_ids = ["${aws_security_group.sg-private.id}"]
    source_dest_check = false
    user_data = "${file("install_db.sh")}"
 
@@ -185,7 +185,7 @@ resource "aws_instance" "jenkins" {
    instance_type = "t1.micro"
    key_name = "${aws_key_pair.default.id}"
    subnet_id = "${aws_subnet.private-subnet.id}"
-   vpc_security_group_ids = ["${aws_security_group.sgdb.id}"]
+   vpc_security_group_ids = ["${aws_security_group.sg-private.id}"]
    source_dest_check = false
    user_data = "${file("install_jenkins.sh")}"
 
@@ -200,7 +200,7 @@ resource "aws_instance" "docker-host" {
    instance_type = "t1.micro"
    key_name = "${aws_key_pair.default.id}"
    subnet_id = "${aws_subnet.private-subnet.id}"
-   vpc_security_group_ids = ["${aws_security_group.sgdb.id}"]
+   vpc_security_group_ids = ["${aws_security_group.sg-private.id}"]
    source_dest_check = false
    user_data = "${file("install_docker.sh")}"
 
