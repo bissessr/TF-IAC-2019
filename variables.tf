@@ -1,10 +1,14 @@
-variable "aws_region" {
-  description = "VPC Region"
-  default = "us-east-1"
-}
+# VARIABLES
+# =======================================
+# From TerraForm.tfvars file
+variable "aws_access_key" {}
+variable "aws_secret_key" {}
+variable "aws_region" {}
 
+# Other Variables
+# =======================================
 variable "vpc_cidr" {
-  description = "CIDR for the VPC"
+  description = "VPC CIDR"
   default = "10.0.0.0/16"
 }
 
@@ -20,7 +24,8 @@ variable "private_subnet_cidr" {
 
 variable "ami" {
   description = "EC2 AMI"
-  default = "ami-4fffc834"
+  #default = "ami-4fffc834"
+  default = "ami-009d6802948d06e52"
 }
 
 variable "key_name" {

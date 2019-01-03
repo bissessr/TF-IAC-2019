@@ -17,7 +17,7 @@ resource "aws_vpc" "DevOpsOne" {
 
 # Define the public subnet
 resource "aws_subnet" "public-subnet" {
-  vpc_id = "${aws_vpc.default.id}"
+  vpc_id = "${aws_vpc.DevOpsOne.id}"
   cidr_block = "${var.public_subnet_cidr}"
   availability_zone = "us-east-1a"
 
@@ -28,7 +28,7 @@ resource "aws_subnet" "public-subnet" {
 
 # Define the private subnet
 resource "aws_subnet" "private-subnet" {
-  vpc_id = "${aws_vpc.default.id}"
+  vpc_id = "${aws_vpc.DevOpsOne.id}"
   cidr_block = "${var.private_subnet_cidr}"
   availability_zone = "us-east-1b"
 
@@ -39,7 +39,7 @@ resource "aws_subnet" "private-subnet" {
 
 # Define the internet gateway
 resource "aws_internet_gateway" "gw" {
-  vpc_id = "${aws_vpc.default.id}"
+  vpc_id = "${aws_vpc.DevOpsOne.id}"
 
   tags {
     Name = "DevOpsOne-VPC IGW"
@@ -48,7 +48,7 @@ resource "aws_internet_gateway" "gw" {
 
 # Define the route table
 resource "aws_route_table" "web-public-rt" {
-  vpc_id = "${aws_vpc.default.id}"
+  vpc_id = "${aws_vpc.DevOpsOne.id}"
 
   route {
     cidr_block = "0.0.0.0/0"
@@ -99,7 +99,7 @@ resource "aws_security_group" "sg-public" {
     cidr_blocks =  ["0.0.0.0/0"]
   }
 
-  vpc_id="${aws_vpc.default.id}"
+  vpc_id="${aws_vpc.DevOpsOne.id}"
 
   tags {
     Name = "Web Server SG"
@@ -132,7 +132,7 @@ resource "aws_security_group" "sg-private"{
     cidr_blocks = ["${var.public_subnet_cidr}"]
   }
 
-  vpc_id = "${aws_vpc.default.id}"
+  vpc_id = "${aws_vpc.DevOpsOne.id}"
 
   tags {
     Name = "Private SG"
