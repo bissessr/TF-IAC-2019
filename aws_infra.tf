@@ -143,8 +143,8 @@ resource "aws_security_group" "sg-private"{
 # Resources - EC2 Instances
 # ==============================================================
 # Define SSH key pair for our instances
-resource "aws_key_pair" "default" {
-  key_name = "vpctestkeypair"
+resource "aws_key_pair" "default" {  
+  key_name = "${var.key_name}"
   public_key = "${file("${var.key_path}")}"
 }
 
