@@ -6,7 +6,7 @@ provider "aws" {
 
 # Resources - VPC
 # ==============================================================
-resource "aws_vpc" "default" {
+resource "aws_vpc" "DevOpsOne" {
   cidr_block = "${var.vpc_cidr}"
   enable_dns_hostnames = true
 
@@ -42,7 +42,7 @@ resource "aws_internet_gateway" "gw" {
   vpc_id = "${aws_vpc.default.id}"
 
   tags {
-    Name = "VPC IGW"
+    Name = "DevOpsOne-VPC IGW"
   }
 }
 
@@ -56,7 +56,7 @@ resource "aws_route_table" "web-public-rt" {
   }
 
   tags {
-    Name = "Public Subnet RT"
+    Name = "Public Subnet Route Table"
   }
 }
 
