@@ -12,4 +12,7 @@ git add .
 git commit -m "Latest Updates"
 git push -u origin master
 
+# Set the AWS credentials variables as an envrionment variables:
+export AWS_ACCESS_KEY_ID=”YOUR ACCESS KEY ID”
+export AWS_SECRET_ACCESS_KEY=”YOUR SECRET ACCESS KEY”
 
