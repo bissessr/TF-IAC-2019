@@ -1,5 +1,7 @@
 # Checkout link below for detail instructions
 https://hackernoon.com/manage-aws-vpc-as-infrastructure-as-code-with-terraform-55f2bdb3de2a
+https://nickcharlton.net/posts/terraform-aws-vpc.html
+
 
 # GIT Commands
 git init
