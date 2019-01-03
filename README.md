@@ -1,7 +1,15 @@
-<p align="center">
-  <img src="http://i0.wp.com/www.blog.labouardy.com/wp-content/uploads/2017/08/vpc_tf-1.png?w=462"/>
-</p>
+# Checkout link below for detail instructions
+https://hackernoon.com/manage-aws-vpc-as-infrastructure-as-code-with-terraform-55f2bdb3de2a
 
-How to use in action is shown below:
+# GIT Commands
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/bissessr/TF-IaC-2019.git
+git push -u origin master
 
-[![asciicast](https://asciinema.org/a/134951.png)](https://asciinema.org/a/134951)
+git add . 
+git commit -m "Latest Updates"
+git push -u origin master
+
+
