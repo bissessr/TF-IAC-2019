@@ -2,15 +2,20 @@
 sudo yum update -y
 # install Java
 sudo yum install java-1.8.0
-# change to tomcat directory
-cd /opt
-sudo wget http://mirrors.ocf.berkeley.edu/apache/tomcat/tomcat-9/v9.0.14/src/apache-tomcat-9.0.14-src.tar.gz
-sudo tar -xvzf /opt/apache-tomcat-9.0.14-src.tar.gz
+# install Tools and Tomcat
+sudo amazon-linux-extras install tomcat8.5
+
+# change to Opt directory
+
+#cd /opt
+#sudo wget http://apache.cs.utah.edu/tomcat/tomcat-8/v8.5.37/bin/apache-tomcat-8.5.37.tar.gz
+#sudo tar -xvzf /opt/apache-tomcat-8.5.37.tar.gz
+#sudo mv apache-tomcat-8.5.37 tomcat8
 
 # set permissions to startup.sh and shutdown.sh
-sudo chmod +x /opt/apache-tomcat-9.0.14-src/bin/startup.sh shutdown.sh
+#sudo chmod 700 /opt/tomcat8/bin/*.sh
 
-# create link files for tomcat startup.sh and shutdown.sh
-sudo ln -s /opt/apache-tomcat-9.0.14-src/bin/startup.sh /usr/local/bin/tomcatup
-sudo ln -s /opt/apache-tomcat-9.0.14-src/bin/shutdown.sh /usr/local/bin/tomcatdown
-sudo tomcatup
+#start Tomcat
+#sudo /opt/tomcat8/bin/startup.sh
+
+
