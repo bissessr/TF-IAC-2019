@@ -14,6 +14,7 @@ provider "aws" {
 
 # Resources - VPC
 # ==============================================================
+# Create VPC
 resource "aws_vpc" "DevOpsOne" {
   cidr_block = "${var.vpc_cidr}"
   enable_dns_hostnames = true
@@ -23,7 +24,7 @@ resource "aws_vpc" "DevOpsOne" {
   }
 }
 
-# Define the public subnet
+# Setup the public subnet - on US-East-1A AZ
 resource "aws_subnet" "public-subnet" {
   vpc_id = "${aws_vpc.DevOpsOne.id}"
   cidr_block = "${var.public_subnet_cidr}"
@@ -34,7 +35,7 @@ resource "aws_subnet" "public-subnet" {
   }
 }
 
-# Define the private subnet
+# Setup private subnet - on US-East-1B AZ
 resource "aws_subnet" "private-subnet" {
   vpc_id = "${aws_vpc.DevOpsOne.id}"
   cidr_block = "${var.private_subnet_cidr}"
@@ -45,7 +46,7 @@ resource "aws_subnet" "private-subnet" {
   }
 }
 
-# Define the internet gateway
+# Setup internet gateway
 resource "aws_internet_gateway" "gw" {
   vpc_id = "${aws_vpc.DevOpsOne.id}"
 
@@ -54,7 +55,7 @@ resource "aws_internet_gateway" "gw" {
   }
 }
 
-# Define the route table
+# Setup route table
 resource "aws_route_table" "web-public-rt" {
   vpc_id = "${aws_vpc.DevOpsOne.id}"
 
@@ -74,7 +75,7 @@ resource "aws_route_table_association" "web-public-rt" {
   route_table_id = "${aws_route_table.web-public-rt.id}"
 }
 
-# Define the security group for public subnet
+# Setup Security Group for public subnet
 resource "aws_security_group" "sg-public" {
   name = "vpc_test_web"
   description = "Allow incoming HTTP connections & SSH access"
@@ -114,7 +115,7 @@ resource "aws_security_group" "sg-public" {
   }
 }
 
-# Define the security group for private subnet
+# Setup security group for private subnet
 resource "aws_security_group" "sg-private"{
   name = "sg_test_web"
   description = "Allow traffic from public subnet"
@@ -147,21 +148,20 @@ resource "aws_security_group" "sg-private"{
   }
 }
 
-
 # Resources - EC2 Instances
 # ==============================================================
 # Define SSH key pair for our instances
-resource "aws_key_pair" "default" {  
-  key_name = "${var.key_name}"
-  public_key = "${file("${var.key_path}")}"
-}
+# resource "aws_key_pair" "default" {  
+#  key_name = "${var.key_name}"
+# public_key = "${file("${var.key_path}")}"
+#}
 
-
-# Define webserver inside the public subnet
+# Setup webserver on public subnet
 resource "aws_instance" "wb" {
    ami  = "${var.ami}"
    instance_type = "t2.micro"
-   key_name = "${aws_key_pair.default.id}"
+   # key_name = "${aws_key_pair.default.id}"
+   key_name = "${var.key_name}"
    subnet_id = "${aws_subnet.public-subnet.id}"
    vpc_security_group_ids = ["${aws_security_group.sg-public.id}"]
    associate_public_ip_address = true
@@ -173,11 +173,12 @@ resource "aws_instance" "wb" {
   }
 }
 
-# Define database inside the private subnet
+# Setup database on private subnet
 resource "aws_instance" "db" {
    ami  = "${var.ami}"
    instance_type = "t2.micro"
-   key_name = "${aws_key_pair.default.id}"
+   # key_name = "${aws_key_pair.default.id}"
+   key_name = "${var.key_name}"
    subnet_id = "${aws_subnet.private-subnet.id}"
    vpc_security_group_ids = ["${aws_security_group.sg-private.id}"]
    source_dest_check = false
@@ -188,11 +189,12 @@ resource "aws_instance" "db" {
   }
 }
 
-# Define Jenkins Server inside the private subnet
+# setup Jenkins Server on private subnet
 resource "aws_instance" "jenkins" {
    ami  = "${var.ami}"
    instance_type = "t2.micro"
-   key_name = "${aws_key_pair.default.id}"
+   #key_name = "${aws_key_pair.default.id}"
+   key_name = "${var.key_name}"
    subnet_id = "${aws_subnet.private-subnet.id}"
    vpc_security_group_ids = ["${aws_security_group.sg-private.id}"]
    source_dest_check = false
@@ -203,11 +205,12 @@ resource "aws_instance" "jenkins" {
   }
 }
 
-# Define Jenkins Server inside the private subnet
+# Setup Docker Host on private subnet
 resource "aws_instance" "docker-host" {
    ami  = "${var.ami}"
    instance_type = "t2.micro"
-   key_name = "${aws_key_pair.default.id}"
+   #key_name = "${aws_key_pair.default.id}"
+   key_name = "${var.key_name}"
    subnet_id = "${aws_subnet.private-subnet.id}"
    vpc_security_group_ids = ["${aws_security_group.sg-private.id}"]
    source_dest_check = false
