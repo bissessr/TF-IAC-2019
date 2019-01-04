@@ -1,25 +1,25 @@
 #!/bin/bash
-
+sudo yum update -y
 # install percona mysql client
-yum install http://www.percona.com/downloads/percona-release/redhat/0.1-3/percona-release-0.1-3.noarch.rpm -y
-sed 's/^gpgcheck.*/gpgcheck=0/g' -i /etc/yum.repos.d/percona-release.repo
-yum install Percona-Server-client-55 -y
+sudo yum install http://www.percona.com/downloads/percona-release/redhat/0.1-3/percona-release-0.1-3.noarch.rpm -y
+sudo sed 's/^gpgcheck.*/gpgcheck=0/g' -i /etc/yum.repos.d/percona-release.repo
+sudo yum install Percona-Server-client-55 -y
 
 # install oracle jdk 1.8
 cd /usr/src
-  yum install -y wget
-  wget -c --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u73-b02/jdk-8u73-linux-x64.rpm"
-  yum localinstall jdk-8u73-linux-x64.rpm -y
+  sudo yum install -y wget
+  sudo wget -c --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u73-b02/jdk-8u73-linux-x64.rpm"
+  sudo yum localinstall jdk-8u73-linux-x64.rpm -y
 cd -
 
 # install jenkins and its requirements
-cat <<FILE > /etc/yum.repos.d/jenkins.repo
+sudo cat <<FILE > /etc/yum.repos.d/jenkins.repo
 [jenkins]
 name=Jenkins
 baseurl=http://pkg.jenkins-ci.org/redhat
 gpgcheck=0
 FILE
-yum install -y git docker telnet jenkins
+sudo yum install -y git docker telnet jenkins
 
 # install maven
 if [[ ! -d /opt/apache-maven-3.1.1 ]];then
@@ -31,8 +31,8 @@ if [[ ! -d /opt/apache-maven-3.1.1 ]];then
 fi
 
 # change Jenkins default user and port
-sed "s/^JENKINS_USER=.*/JENKINS_USER=\"root\"/g" -i /etc/sysconfig/jenkins
-sed "s/^JENKINS_PORT=.*/JENKINS_PORT=\"8000\"/g" -i /etc/sysconfig/jenkins
-service docker restart
+sudo sed "s/^JENKINS_USER=.*/JENKINS_USER=\"root\"/g" -i /etc/sysconfig/jenkins
+sudo sed "s/^JENKINS_PORT=.*/JENKINS_PORT=\"8000\"/g" -i /etc/sysconfig/jenkins
+sudo sudo service docker restart
 service jenkins restart
 
