@@ -4,6 +4,8 @@
 variable "aws_access_key" {}
 variable "aws_secret_key" {}
 
+
+
 variable "aws_region" {
     description = "EC2 Region for the VPC"
     default = "us-east-1"
@@ -33,10 +35,10 @@ variable "ami" {
 
 variable "key_name" {
   description = "AWS SSH Key Name"
-  default = "devops1"
+  default = "devops2"
 }
 
 variable "key_path" {
   description = "SSH Public Key path"  
-  default = "C://Users//Raj//Documents//_LAB/_keys//devops1.pub"    
+  default = "C://Users//Raj//Documents//_LAB/_keys//devops2.pub"    
 }
