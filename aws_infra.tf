@@ -11,9 +11,9 @@ provider "aws" {
   region = "${var.aws_region}"
 }
 
-
 # Resources - VPC
 # ==============================================================
+
 # Create VPC
 resource "aws_vpc" "DevOpsOne" {
   cidr_block = "${var.vpc_cidr}"
@@ -47,6 +47,7 @@ resource "aws_subnet" "private-subnet" {
 }
 
 # Setup internet gateway
+# =========================================================
 resource "aws_internet_gateway" "gw" {
   vpc_id = "${aws_vpc.DevOpsOne.id}"
 
@@ -55,15 +56,44 @@ resource "aws_internet_gateway" "gw" {
   }
 }
 
-# Setup route table
+
+# NAT Gateway for Internet access for Private Subnet
+# =========================================================
+resource "aws_eip" "gateway_eip" {}
+
+resource "aws_nat_gateway" "nat_gateway" {
+  allocation_id = "${aws_eip.gateway_eip.id}"
+  subnet_id     = "${aws_subnet.public-subnet.id}"
+  depends_on    = ["aws_internet_gateway.gw"]
+  tags {
+    Name = "gw nat"
+  }
+}
+
+resource "aws_route_table" "nat_route_table" {
+  vpc_id = "${aws_vpc.DevOpsOne.id}"
+}  
+
+resource "aws_route" "nat_route" {
+  route_table_id         = "${aws_route_table.nat_route_table.id}"
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = "${aws_nat_gateway.nat_gateway.id}"  
+}
+
+resource "aws_route_table_association" "private_route" {  
+  subnet_id      = "${aws_subnet.private-subnet.id}"
+  route_table_id = "${aws_route_table.nat_route_table.id}"
+}
+
+
+# Setup Route Table
+# =========================================================
 resource "aws_route_table" "web-public-rt" {
   vpc_id = "${aws_vpc.DevOpsOne.id}"
-
   route {
     cidr_block = "0.0.0.0/0"
     gateway_id = "${aws_internet_gateway.gw.id}"
   }
-
   tags {
     Name = "Public Subnet Route Table"
   }
@@ -74,6 +104,9 @@ resource "aws_route_table_association" "web-public-rt" {
   subnet_id = "${aws_subnet.public-subnet.id}"
   route_table_id = "${aws_route_table.web-public-rt.id}"
 }
+
+# Setup Security Groups
+# ============================================================
 
 # Setup Security Group for public subnet
 resource "aws_security_group" "sg-public" {
@@ -108,18 +141,17 @@ resource "aws_security_group" "sg-public" {
     cidr_blocks =  ["0.0.0.0/0"]
   }
   
-    egress {
-        from_port = 80
-        to_port = 80
-        protocol = "tcp"
-        cidr_blocks = ["0.0.0.0/0"]
+  egress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
     }
-
 
   vpc_id="${aws_vpc.DevOpsOne.id}"
 
   tags {
-    Name = "Web Server SG"
+    Name = "Public-SG"
   }
 }
 
@@ -149,20 +181,23 @@ resource "aws_security_group" "sg-private"{
     cidr_blocks = ["${var.public_subnet_cidr}"]
   }
 
+# Allow traffic within Private Subnet
+ingress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = ["${var.private_subnet_cidr}"]
+  }
+
   vpc_id = "${aws_vpc.DevOpsOne.id}"
 
   tags {
-    Name = "Private SG"
+    Name = "Private-SG"
   }
 }
 
 # Resources - EC2 Instances
 # ==============================================================
-# Define SSH key pair for our instances
-# resource "aws_key_pair" "default" {  
-#  key_name = "${var.key_name}"
-# public_key = "${file("${var.key_path}")}"
-#}
 
 # Setup webserver on public subnet
 resource "aws_instance" "wb" {
@@ -225,6 +260,6 @@ resource "aws_instance" "docker-host" {
    user_data = "${file("install_docker.sh")}"
 
   tags {
-    Name = "docker-hosts"
+    Name = "docker-host"
   }
 }
