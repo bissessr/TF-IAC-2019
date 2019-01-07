@@ -33,6 +33,11 @@ variable "ami" {
   default = "ami-009d6802948d06e52"
 }
 
+variable "ami_win" {
+  description = "EC2 AMI"
+  default = "ami-085ea1972627f58fd"
+}
+
 variable "key_name" {
   description = "AWS SSH Key Name"
   default = "devopsone"

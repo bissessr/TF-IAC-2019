@@ -189,6 +189,13 @@ ingress {
     cidr_blocks = ["${var.private_subnet_cidr}"]
   }
 
+egress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   vpc_id = "${aws_vpc.DevOpsOne.id}"
 
   tags {
@@ -212,6 +219,20 @@ resource "aws_instance" "wb" {
 
   tags {
     Name = "webserver"
+  }
+}
+
+resource "aws_instance" "bastion" {
+   ami  = "${var.ami_win}"
+   instance_type = "t2.micro"
+   key_name = "${var.key_name}"
+   subnet_id = "${aws_subnet.public-subnet.id}"
+   vpc_security_group_ids = ["${aws_security_group.sg-public.id}"]
+   associate_public_ip_address = true
+   source_dest_check = false
+   
+  tags {
+    Name = "bastion"
   }
 }
 
