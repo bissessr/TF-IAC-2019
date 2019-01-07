@@ -1,4 +1,4 @@
-# Checkout link below for detail instructions
+# Terraform Script based on 
 https://hackernoon.com/manage-aws-vpc-as-infrastructure-as-code-with-terraform-55f2bdb3de2a
 
 # GIT Commands
@@ -12,7 +12,5 @@ git add .
 git commit -m "Latest Updates"
 git push -u origin master
 
-# Set the AWS credentials variables as an envrionment variables:
-export AWS_ACCESS_KEY_ID=”YOUR ACCESS KEY ID”
-export AWS_SECRET_ACCESS_KEY=”YOUR SECRET ACCESS KEY”
+
 
