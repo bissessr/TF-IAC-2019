@@ -15,6 +15,7 @@ sudo rpm --import http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key
 sudo yum install jenkins -y
 sudo service jenkins start
 sudo chkconfig --add jenkins
+sudo yum install git -y
 
 # install maven
 if [[ ! -d /opt/apache-maven-3.1.1 ]];then

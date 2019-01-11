@@ -127,6 +127,13 @@ resource "aws_security_group" "sg-public" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+ingress {
+    from_port = 3389
+    to_port = 3389
+    protocol = "tcp"
+   cidr_blocks = ["0.0.0.0/0"]
+  }
+
   ingress {
     from_port = -1
     to_port = -1
@@ -167,6 +174,14 @@ resource "aws_security_group" "sg-private"{
     cidr_blocks = ["${var.public_subnet_cidr}"]
   }
 
+# Allow access to Jenkins from Public Subnet
+ingress {
+    from_port = 8080
+    to_port = 8080
+    protocol = "tcp"
+    cidr_blocks = ["${var.public_subnet_cidr}"]
+  }
+
   ingress {
     from_port = -1
     to_port = -1
@@ -181,6 +196,7 @@ resource "aws_security_group" "sg-private"{
     cidr_blocks = ["${var.public_subnet_cidr}"]
   }
 
+ 
 # Allow traffic within Private Subnet
 ingress {
     from_port = 0
@@ -203,9 +219,28 @@ egress {
   }
 }
 
+# DHCP and DNS Zone
+# ==============================================================
+resource "aws_vpc_dhcp_options" "Devops1dhcp" {
+    domain_name = "${var.DnsZoneName}"
+    domain_name_servers = ["AmazonProvidedDNS"]
+    tags {
+        Name = "DevOpsOne - internal zone"
+    }
+}
+
+resource "aws_vpc_dhcp_options_association" "dns_resolver" {
+    vpc_id = "${aws_vpc.DevOpsOne.id}"
+    dhcp_options_id = "${aws_vpc_dhcp_options.Devops1dhcp.id}"
+}
+
+resource "aws_route53_zone" "main" {
+    name = "${var.DnsZoneName}"   
+    comment = "Managed by terraform"
+}
+
 # Resources - EC2 Instances
 # ==============================================================
-
 # Setup webserver on public subnet
 resource "aws_instance" "wb" {
    ami  = "${var.ami}"

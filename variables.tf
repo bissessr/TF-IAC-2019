@@ -43,7 +43,8 @@ variable "key_name" {
   default = "devopsone"
 }
 
-#variable "key_path" {
-#  description = "SSH Public Key path"  
-#  default = "C://Users//Raj//Documents//_LAB/_keys//DevOpsOne//devops2.pub"    
-#}
+variable "DnsZoneName" {
+     default = "DevOpsOne.internal"
+     description = "DevOpsOne - internal dns Zone"
+}
+
