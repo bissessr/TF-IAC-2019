@@ -195,7 +195,6 @@ ingress {
     protocol = "tcp"
     cidr_blocks = ["${var.public_subnet_cidr}"]
   }
-
  
 # Allow traffic within Private Subnet
 ingress {
@@ -258,14 +257,21 @@ resource "aws_instance" "wb" {
 }
 
 resource "aws_instance" "bastion" {
-   ami  = "${var.ami_win}"
-   instance_type = "t2.micro"
-   key_name = "${var.key_name}"
-   subnet_id = "${aws_subnet.public-subnet.id}"
-   vpc_security_group_ids = ["${aws_security_group.sg-public.id}"]
-   associate_public_ip_address = true
-   source_dest_check = false
-   
+  ami  = "${var.ami_win}"
+  instance_type = "t2.micro"
+  key_name = "${var.key_name}"
+  subnet_id = "${aws_subnet.public-subnet.id}"
+  vpc_security_group_ids = ["${aws_security_group.sg-public.id}"]
+  associate_public_ip_address = true
+  source_dest_check = false
+
+  user_data = <<EOF
+  <powershell>
+  net user ${var.instance_username} "${var.instance_password}" /add /y
+  net localgroup administrators ${var.instance_username} /add
+  </powershell>
+  EOF
+
   tags {
     Name = "bastion"
   }
@@ -275,7 +281,6 @@ resource "aws_instance" "bastion" {
 resource "aws_instance" "db" {
    ami  = "${var.ami}"
    instance_type = "t2.micro"
-   # key_name = "${aws_key_pair.default.id}"
    key_name = "${var.key_name}"
    subnet_id = "${aws_subnet.private-subnet.id}"
    vpc_security_group_ids = ["${aws_security_group.sg-private.id}"]
@@ -291,7 +296,6 @@ resource "aws_instance" "db" {
 resource "aws_instance" "jenkins" {
    ami  = "${var.ami}"
    instance_type = "t2.micro"
-   #key_name = "${aws_key_pair.default.id}"
    key_name = "${var.key_name}"
    subnet_id = "${aws_subnet.private-subnet.id}"
    vpc_security_group_ids = ["${aws_security_group.sg-private.id}"]
@@ -307,7 +311,6 @@ resource "aws_instance" "jenkins" {
 resource "aws_instance" "docker-host" {
    ami  = "${var.ami}"
    instance_type = "t2.micro"
-   #key_name = "${aws_key_pair.default.id}"
    key_name = "${var.key_name}"
    subnet_id = "${aws_subnet.private-subnet.id}"
    vpc_security_group_ids = ["${aws_security_group.sg-private.id}"]

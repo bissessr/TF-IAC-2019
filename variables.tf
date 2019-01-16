@@ -44,7 +44,12 @@ variable "key_name" {
 }
 
 variable "DnsZoneName" {
-     default = "DevOpsOne.internal"
-     description = "DevOpsOne - internal dns Zone"
+  default = "DevOpsOne.internal"
+  description = "DevOpsOne - internal dns Zone"
 }
 
+variable "instance_username" { 
+  default = "ec2-user" 
+} 
+
+variable "instance_password" { }
