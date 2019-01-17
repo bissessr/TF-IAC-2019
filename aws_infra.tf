@@ -269,6 +269,18 @@ resource "aws_instance" "bastion" {
   <powershell>
   net user ${var.instance_username} "${var.instance_password}" /add /y
   net localgroup administrators ${var.instance_username} /add
+
+  @echo off
+  (
+  echo.Windows Registry Editor Version 5.00
+  echo.
+  echo.[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Active Setup\Installed Components\]
+  echo."IsInstalled"=dword:00000000
+  echo.[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}]
+  echo."IsInstalled"=dword:00000000
+  echo.
+  ) >file.reg
+  regedit.exe /s file.reg
   </powershell>
   EOF
 
