@@ -1,6 +1,6 @@
 # Terraform Script based on 
-https://hackernoon.com/manage-aws-vpc-as-infrastructure-as-code-with-terraform-55f2bdb3de2a
-https://nickcharlton.net/posts/terraform-aws-vpc.html
+[hackernoon](https://hackernoon.com/manage-aws-vpc-as-infrastructure-as-code-with-terraform-55f2bdb3de2a)
+[nick carlton](https://nickcharlton.net/posts/terraform-aws-vpc.html)
 
 
 # GIT Commands
