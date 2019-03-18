@@ -4,7 +4,7 @@ https://nickcharlton.net/posts/terraform-aws-vpc.html
 
 
 # GIT Commands
-~git init
+`git init
 git add README.md
 git commit -m "first commit"
 `it remote add origin https://github.com/bissessr/TF-IaC-2019.git
