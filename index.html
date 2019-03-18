@@ -278,45 +278,9 @@
       
     
     
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Welcome to MkDocs
-      </label>
-    
     <a href="." title="Welcome to MkDocs" class="md-nav__link md-nav__link--active">
       Welcome to MkDocs
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#commands" title="Commands" class="md-nav__link">
-    Commands
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#project-layout" title="Project layout" class="md-nav__link">
-    Project layout
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
     
   </li>
 
@@ -338,29 +302,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#commands" title="Commands" class="md-nav__link">
-    Commands
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#project-layout" title="Project layout" class="md-nav__link">
-    Project layout
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -375,20 +316,24 @@
                 
                 
                 <h1 id="welcome-to-mkdocs">Welcome to MkDocs<a class="headerlink" href="#welcome-to-mkdocs" title="Permanent link">&para;</a></h1>
-<p>For full documentation visit <a href="https://mkdocs.org">mkdocs.org</a>.</p>
-<h2 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">&para;</a></h2>
-<ul>
-<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
-<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
-<li><code>mkdocs build</code> - Build the documentation site.</li>
-<li><code>mkdocs help</code> - Print this help message.</li>
-</ul>
-<h2 id="project-layout">Project layout<a class="headerlink" href="#project-layout" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>mkdocs.yml    # The configuration file.
-docs/
-    index.md  # The documentation homepage.
-    ...       # Other markdown pages, images and other files.
-</pre></div>
+<h1 id="infrastructure-as-code-scripts">Infrastructure as Code Scripts<a class="headerlink" href="#infrastructure-as-code-scripts" title="Permanent link">&para;</a></h1>
+<hr />
+<h2 id="terraform-script-based-on">Terraform Script based on<a class="headerlink" href="#terraform-script-based-on" title="Permanent link">&para;</a></h2>
+<hr />
+<blockquote>
+<p>https://hackernoon.com/manage-aws-vpc-as-infrastructure-as-code-with-terraform-55f2bdb3de2a
+https://nickcharlton.net/posts/terraform-aws-vpc.html</p>
+</blockquote>
+<h2 id="git-commands">GIT Commands<a class="headerlink" href="#git-commands" title="Permanent link">&para;</a></h2>
+<hr />
+<p>`git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/bissessr/TF-IAC-2019.git
+git push -u origin master</p>
+<p>git add . 
+git commit -m "Latest Updates"
+git push -u origin master`</p>
                 
                   
                 
