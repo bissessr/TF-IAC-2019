@@ -5,15 +5,22 @@
 
 
 ## GIT Commands
-`git init
-git add README.md
-git commit -m "first commit"
-git remote add origin https://github.com/bissessr/TF-IaC-2019.git
-git push -u origin master`
+---
+`git init`
 
-`git add . 
-git commit -m "Latest Updates"
-git push -u origin master`
+`git add README.md`
 
+`git commit -m "first commit"`
+
+`git remote add origin https://github.com/bissessr/TF-IAC-2019.git`
+
+`git push -u origin master`
+
+
+`git add . `
+
+`git commit -m "Latest Updates"`
+
+`git push -u origin master`
 
 
