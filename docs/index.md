@@ -7,17 +7,19 @@ Some of the code snipit is based on the following excellent work (thanks guys!)
 
 - *[Nick Carlton - Terraform: AWS VPC with Private and Public Subnets](https://nickcharlton.net/posts/terraform-aws-vpc.html)*
 
-## AWS Infrastructure Overview
+## AWS Infrastructure
 ---
+Below is a diagram of the AWS infrastructure we will setup using Terraform.
+
 <img src="images/iac-aws.png" width="500" />
 
 
 
-## Instructions
+## Setup Instructions
 ---
 After completing the pre-requisites use the instructions below to begin the setup process.
 
-1. Setup your AWS credentials (some nice instructions available here).
+1. Setup your AWS credentials
 2. Create new folder for your terraform scripts and supporting files
 3. Change to the folder
 4. Initialize and sync GIT repository
@@ -29,4 +31,4 @@ After completing the pre-requisites use the instructions below to begin the setu
 
 ## More Information
 ---
-Checkout my other articles on *[Medium](http://medium.com/@cloud_guy1)*
+Checkout my articles on *[Medium](http://medium.com/@cloud_guy1)*
