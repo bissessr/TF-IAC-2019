@@ -9,8 +9,8 @@ Some of the code snipit is based on the following excellent work (thanks guys!)
 
 ## AWS Infrastructure Overview
 ---
-![AWS Test Platform](/images/iac-aws.png)
-![AWS Test Platform](https://github.com/bissessr/TF-IAC-2019/tree/master/docs/images/iac-aws.png"AWS Test Platform")
+<img src="images/iac-aws.png" width="500" />
+
 
 
 ## Instructions
