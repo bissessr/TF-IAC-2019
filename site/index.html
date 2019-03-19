@@ -304,8 +304,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#git-commands" title="GIT Commands" class="md-nav__link">
-    GIT Commands
+  <a href="#instructions" title="Instructions" class="md-nav__link">
+    Instructions
   </a>
   
 </li>
@@ -356,8 +356,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#git-commands" title="GIT Commands" class="md-nav__link">
-    GIT Commands
+  <a href="#instructions" title="Instructions" class="md-nav__link">
+    Instructions
   </a>
   
 </li>
@@ -401,17 +401,20 @@
 </ul>
 <h2 id="aws-infrastructure-overview">AWS Infrastructure Overview<a class="headerlink" href="#aws-infrastructure-overview" title="Permanent link">&para;</a></h2>
 <hr />
-<p><img alt="AWS Test Platform" src="/images/iac-aws.png" /></p>
-<h2 id="git-commands">GIT Commands<a class="headerlink" href="#git-commands" title="Permanent link">&para;</a></h2>
+<p><img alt="AWS Test Platform" src="/images/iac-aws.png/" /></p>
+<h2 id="instructions">Instructions<a class="headerlink" href="#instructions" title="Permanent link">&para;</a></h2>
 <hr />
-<p><code>git init</code></p>
-<p><code>git add README.md</code></p>
-<p><code>git commit -m "first commit"</code></p>
-<p><code>git remote add origin https://github.com/bissessr/TF-IAC-2019.git</code></p>
-<p><code>git push -u origin master</code></p>
-<p><code>git add .</code></p>
-<p><code>git commit -m "Latest Updates"</code></p>
-<p><code>git push -u origin master</code></p>
+<p>After completing the pre-requisites use the instructions below to begin the setup process.</p>
+<ol>
+<li>Setup your AWS credentials (some nice instructions available here).</li>
+<li>Create new folder for your terraform scripts and supporting files</li>
+<li>Change to the folder</li>
+<li>Initialize and sync GIT repository</li>
+<li>Run terraform init</li>
+<li>Run terraform plan to test your script</li>
+<li>Terraform Plan — No errors</li>
+<li>If all is good, run <em>terraform apply</em> to kick off the script</li>
+</ol>
 <h2 id="more-information">More Information<a class="headerlink" href="#more-information" title="Permanent link">&para;</a></h2>
 <hr />
 <p>Checkout my other articles on <em><a href="http://medium.com/@cloud_guy1">Medium</a></em></p>

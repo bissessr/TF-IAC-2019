@@ -9,28 +9,21 @@ Some of the code snipit is based on the following excellent work (thanks guys!)
 
 ## AWS Infrastructure Overview
 ---
-![AWS Test Platform](/images/iac-aws.png)
+![AWS Test Platform](/images/iac-aws.png/)
 
 
-
-## GIT Commands
+## Instructions
 ---
-`git init`
+After completing the pre-requisites use the instructions below to begin the setup process.
 
-`git add README.md`
-
-`git commit -m "first commit"`
-
-`git remote add origin https://github.com/bissessr/TF-IAC-2019.git`
-
-`git push -u origin master`
-
-
-`git add . `
-
-`git commit -m "Latest Updates"`
-
-`git push -u origin master`
+1. Setup your AWS credentials (some nice instructions available here).
+2. Create new folder for your terraform scripts and supporting files
+3. Change to the folder
+4. Initialize and sync GIT repository
+5. Run terraform init
+6. Run terraform plan to test your script
+7. Terraform Plan — No errors
+8. If all is good, run *terraform apply* to kick off the script
 
 
 ## More Information
