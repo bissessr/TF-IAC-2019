@@ -3,7 +3,7 @@ This repo contain the necessary scripts to build out the AWS infrastructure as o
 
 *[DevOps Automation and IaC](https://medium.com/devopslinks/devops-automation-and-iac-c007c3c0d172)*
 
-Some of the code snipit is based on the following excellent work
+Some of the code snipit is based on the following excellent work (thanks guys!)
 
 - *[Hackernoon - Manage AWS VPC as Infrastructure as Code with Terraform](https://hackernoon.com/)*
 
@@ -11,6 +11,6 @@ Some of the code snipit is based on the following excellent work
 
 
 ## GIT Commands
-*[More information] https://bissessr.github.io/TF-IAC-2019/*
+*[More information](https://bissessr.github.io/TF-IAC-2019/)*
 
 
