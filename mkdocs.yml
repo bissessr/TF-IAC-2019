@@ -1,0 +1,50 @@
+
+# Project information
+site_name: 'TF-IAC-2019'
+site_description: 'TF-IAC-2019 Documentation'
+site_author: 'Raj Bissessar'
+site_url: 'https://github.com/bissessr/TF-IAC-2019/'
+
+# Repository
+repo_name: 'bissessr/TF-IAC-2019'
+repo_url: 'https://github.com/bissessr/TF-IAC-2019'
+
+# Copyright
+copyright: 'Copyright &copy; 2018 - 2019 Raj Bissessar'
+
+# Configuration
+theme:
+  name: 'material'
+  #name: 'windmill'
+  language: 'en'
+  palette:
+    primary: 'blue grey'
+    accent: 'indigo'
+  font:
+    text: 'Roboto'
+    code: 'Roboto Mono'
+
+# Customization
+extra:
+  manifest: 'manifest.webmanifest'
+  social:
+    - type: 'github'
+      link: 'https://github.com/bissessr'
+    - type: 'twitter'
+      link: 'https://twitter.com/cloud_guy1'
+    - type: 'linkedin'
+      link: 'https://linkedin.com/in/raj-bissessar'
+
+# Google Analytics
+google_analytics:
+  - 'UA-XXXXXXXX-X'
+  - 'auto'
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - toc:
+      permalink: true
+
