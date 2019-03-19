@@ -9,8 +9,7 @@ Some of the code snipit is based on the following excellent work (thanks guys!)
 
 ## AWS Infrastructure Overview
 ---
-![AWS Test Platform](/docs/images/iac-aws.png/)
-![AWS Test Platform](/images/iac-aws.png/)
+![AWS Test Platform](/iac-aws.png)
 
 ## Instructions
 ---
