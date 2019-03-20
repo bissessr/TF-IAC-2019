@@ -10,7 +10,9 @@ Some of the code snipit is based on the following excellent work (thanks guys!)
 - *[Nick Carlton - Terraform: AWS VPC with Private and Public Subnets](https://nickcharlton.net/posts/terraform-aws-vpc.html)*
 
 
-## GIT Commands
+## Instructions
+Checkout the link below for more information
+
 *[More information](https://bissessr.github.io/TF-IAC-2019/)*
 
 
