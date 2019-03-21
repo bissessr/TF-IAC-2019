@@ -14,6 +14,7 @@ Below is a diagram of the AWS infrastructure we will setup using Terraform.
 <img src="images/iac-aws.png" width="500" />
 
 ## Source Code
+---
 [TF-IAC-2019 Code](https://github.com/bissessr/TF-IAC-2019/)
 
 
