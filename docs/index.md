@@ -11,7 +11,7 @@ Some of the code snipit is based on the following excellent work (thanks guys!)
 ---
 Below is a diagram of the AWS infrastructure we will setup using Terraform.
 
-<img src="images/iac-aws.png" width="500" />
+<img src="images/iac-aws.png" width="700"/>
 
 ## Source Code
 ---
